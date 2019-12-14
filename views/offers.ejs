@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/header.ejs') %>
+        <section class="offers-header">
+            <div class="offers-header__text">Offers</div>
+        </section>
+        <section class="offers-list">
+            <% if(!offers.length){ %>
+
+                <div class="no-offers-card">
+                    Check back later for more offers and deals!
+                </div>
+
+            <% } else { 
+                for(let offer of offers){
+            %>
+                <div class="offer-card">
+                    <h2 class="offer-card__headline"><%= offer.headline %></h2>
+                    <p class="offer-card__description"><%= offer.description %></p>
+                    <p class="offer-card__expires">Expires <%= offer.expires %></p>
+                </div>
+
+            <% }
+            } %>
+
+        </section>
+    </body>
+</html>

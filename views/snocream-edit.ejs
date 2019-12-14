@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin | Edit Snocream</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="padding:1rem;">
+    <a href="/admin/menu/snocreams">Back to Snocreams Menu</a>
+    <form method="POST" action="/admin/menu/snocreams/edit" enctype="multipart/form-data">
+        <h1>Edit Snocream</h1>
+        <div class="form-group">
+            <label for="name" class="label">Item Name</label>
+            <input type="text" name="name" id="name" value="<%= item.name %>" class="text-input">
+        </div>
+        <div class="form-group">
+            <label for="description" class="label">Description</label>
+            <textarea name="desc" id="desc" rows="8" class="text-input"><%= item.description %></textarea>
+        </div>
+        <div class="form-group">
+            <p>Current Image:</p>
+            <img src="<%= item.image %>" alt="snocream image" style="width:15rem;"/>
+        </div>
+        <div class="form-group">
+            <label for="newImage" class="label">Select New Image</label>
+            <input type="file" accept="image/*" name="newImage" id="newImage">
+        </div>
+        <input type="hidden" name="itemid" value="<%= item.id %>">
+        <div class="form-group">
+            <button type="submit" class="btn btn--green">Save Changes</button>
+        </div>
+    </form>
+</body>
+</html>

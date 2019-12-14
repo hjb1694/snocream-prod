@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin | Menu Panel | Snocreams</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="padding:1rem;">
+    <a href="/admin/menu">Back to menu items panel</a>
+    <h1>
+        Snocreams Menu
+    </h1>
+    <a href="/admin/menu/snocreams/add" style="display:inline-block; margin:2rem 0;" class="btn btn--green">Add Snocream</a>
+    <% if(!snocreams.length){ %>
+
+        <p>You have no menu items. Create one below!</p>
+
+    <% }else{
+        for(item of snocreams){
+    %>
+        <div class="card admin-menuitem-card">
+            <div>
+                <img class="admin-menuitem-card__img" src="<%= item.image %>"/>
+            </div>
+            <div style="margin-left:1rem;">
+                <h3><%= item.name %></h3>
+                <p class="admin-menuitem-card__desc"><%= item.description %></p>
+                <a href="/admin/menu/snocreams/edit/<%= item.id %>" class="btn btn--green">Edit</a>
+                <form id="deleteItemForm" style="display:inline;" method="POST" action="/admin/menu/snocreams/delete">
+                    <input type="hidden" name="deleteId" value="<%= item.id %>">
+                    <button class="deleteBtn btn btn--red">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% }
+    } %>
+</body>
+</html>

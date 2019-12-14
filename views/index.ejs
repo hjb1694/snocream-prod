@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head.ejs') %>
+    <body>
+            <%- include('./partials/header.ejs') %>
+            <section class="hero-section">
+                <div class="hero-section__content">
+                    <h1 class="hero-text">
+                        <div class="hero-text__sub hero-text__sub--1">Truly</div>
+                        <br/>
+                        <div class="hero-text__sub hero-text__sub--2">Delicious!</div>
+                    </h1>
+                    <a href="/menu" class="hero-btn">See Our Menu &rarr;</a>
+                </div> 
+            </section>
+            <section class="briefing-section">
+                <div class="container">
+                    <h2 class="section-header briefing-section-header">What is Sno Cream?</h2>
+                    <p class="briefing-text">
+                        <strong>Sno Cream</strong> is an inspired name from Subling, a popular south east Asian 
+                        shaved milk dessert which is originally from Korea. The original name for the similar dessert
+                        is Bingsu. Using <strong>condensed milk</strong> and <strong>yummy flavors</strong>, a <strong>sweet snow</strong> is produced. Topped with fresh fruits
+                        and other delicious goodies, a truly unique dessert is crafted. Come experience one of <strong><em>Knoxville's most 
+                        loved treats!</em></strong>              
+                    </p>
+                </div>
+            </section>
+            <section class="location-section">
+                <h2 class="section-header location-section-header">Come See Us for a Unique Treat!</h2>
+                <div class="location-grid">
+                    <div class="location-grid__one">
+                        <div id="map"></div>
+                    </div>
+                    <div class="location-grid__two">
+                        <div class="card location-card">
+                            <h3 class="location-card-header">Address</h3>
+                            <div class="address">
+                                <p>Turkey Creek</p>
+                                <p>10911 Parkside Drive</p>
+                                <p>Knoxville, TN 37934</p>
+                                <p>865.000.0000</p>
+                            </div>
+                            <h3 class="location-card-header">Hours</h3>
+                            <div class="hours">
+                                <div><strong>Sun-Thu:</strong> 12PM-9PM</div>
+                                <div><strong>Fri-Sat:</strong> 12PM-10PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <section class="two">
+            
+            <div class="two-grid">
+                <div class="two-grid__one">
+                    <div class="img-container img-container--1">
+                        
+                    </div>
+                </div>
+                <div class="two-grid__two">
+                    <div class="img-container img-container--2">
+                        
+                    </div>
+                </div>
+                <div class="two-grid__three">
+                    <div class="img-container img-container--3">
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <p><small>Made with &hearts; by Hayden Bradfield</small></p>
+            <p>&copy; 2019 SnoCream</p>
+
+        </footer>
+        <script>
+            function initMap(){
+                // The location of Uluru
+                var uluru = {lat: 35.90344, lng: -84.146722};
+                // The map, centered at Uluru
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: 15, center: uluru});
+                // The marker, positioned at Uluru
+                var marker = new google.maps.Marker({position: uluru, map: map});
+            }
+        </script>
+         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxHlWziSJ69DLsRY-eHiEYDTDdyZyoua8&callback=initMap"
+        type="text/javascript"></script>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin | Offers</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="padding:2rem;">
+    <a href="/admin">Back to Admin Panel</a>
+    <div class="offerlist">
+        <h1>Offers</h1>
+        <% if(!offers.length){ %>
+            <p>You have no listed offers. Create one below.</p>
+        <% } else { 
+            for(let offer of offers){
+        %>
+    
+            <div class="card offercard">
+                <h2><%= offer.headline %></h2>
+                <p><%= offer.description %></p>
+                <p><strong>Expires:</strong> <%= offer.expires %></p>
+                <form method="POST" action="/admin/offers/delete">
+                    <input type="hidden" value="<%= offer.id %>" name="offerId"/>
+                    <button style="margin:1rem auto;" class="btn btn--red">DELETE</button>
+                </form>
+            </div>
+            
+    
+        <% }} %>
+    </div>
+
+    <form class="createofferform" method="POST" action="/admin/offers">
+        <h2>Create Offer</h2>
+        <div class="form-group">
+            <label for="headline" class="label">Headline</label>
+            <input type="text" name="headline" id="headline" class="text-input">
+        </div>
+        <div class="form-group">
+            <label for="description" class="label">Description</label>
+            <textarea name="description" id="description"  rows="6" class="text-input"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="expires" class="label">Expires</label>
+            <input type="date" name="expires" id="expires" placeholder="mm/dd/yyyy" class="text-input">
+        </div>
+        <button id="subbut" class="btn btn--green">Add</button>
+    </form>
+    <script>
+        function submitNewOffer(e){
+            e.preventDefault();
+
+            const headline = document.querySelector('#headline').value.trim();
+            const description = document.querySelector('#description').value.trim();
+            const expiration = document.querySelector('#expires').value;
+            let errors = 0;
+
+            !headline && errors++;
+            !description && errors++;
+            !expiration && errors++;
+
+            if(errors){
+                alert('Please complete all fields.');
+            }else{
+                document.querySelector('.createofferform').submit();
+            }
+            
+
+        }
+
+        document.querySelector('#subbut').addEventListener('click', submitNewOffer);
+    </script>
+</body>
+</html>

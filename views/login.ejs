@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <form class="login-form">
+        <h1 class="login-form__heading">Login</h1>
+        <div class="form-group">
+            <label class="label" for="username">username</label>
+            <input class="text-input" type="text" name="" id="username">
+        </div>
+        <div class="form-group">
+            <label class="label" for="password">password</label>
+            <input class="text-input" type="password" name="" id="password">
+        </div>
+        <div class="form-group">
+            <button type="submit" id="subbut" class="btn btn--green">Login</button>
+        </div>
+        <div id="errbox"></div>
+    </form>
+    <script>
+
+        const errbox = document.querySelector('#errbox');
+        
+        function loginUser(e){
+
+            e.preventDefault();
+
+            errbox.textContent = null;
+
+            const username = document.querySelector('#username').value;
+            const password = document.querySelector('#password').value;
+
+            fetch('/admin/login', {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                }, 
+                body : JSON.stringify({
+                    username, 
+                    password
+                })
+            }).then(res => res.json())
+            .then(res => {
+
+                console.log(res);
+
+                if(res.error){
+                    errbox.textContent = res.error;
+                } else if(res.success){
+
+                    window.location.replace('/admin/');
+
+                }
+
+            })
+            .catch(e => {
+                console.log(e);
+                alert('There was an issue processing your request.');
+            });
+
+
+
+        }
+    
+        document.querySelector('#subbut').addEventListener('click', loginUser);
+    </script>
+</body>
+</html>

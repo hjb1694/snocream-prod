@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/header.ejs') %>
+        <section class="menu-header">
+            <div class="menu-header__text">Our Menu</div>
+        </section>
+        <section class="menu-section">
+            <div class="menu-subsection">
+                <h2 class="menu-subsection__header">
+                    Sno Creams
+                </h2>
+                <div class="menu-subsection__list">
+                    <% if(!snocreams.length){ %>
+
+                        <h2>Nothing to see just yet...</h2>
+
+                    <% }else{ 
+                        for(let item of snocreams){
+                    %>
+                        
+                    <div 
+                    class="menu-tile"
+                    data-description="<%= item.description %>"
+                    >
+                        <div class="menu-tile__img" style="background-image:url(<%= item.image %>);"></div>
+                        <div class="menu-tile__desc">
+                            <%= item.name %>
+                        </div>
+                    </div>
+
+                    <% }
+                    } %>
+                </div>
+            </div>
+        </section>
+        <div class="modal">
+            <div class="modal__main">
+                <div class="modal__body">
+                    <i class="fa fa-close modal__close-btn"></i>
+                    <div class="modal__body-text"></div>
+                </div>
+            </div>
+        </div>
+            <script src="https://kit.fontawesome.com/4f18e4f9dd.js" crossorigin="anonymous"></script>
+            <script>
+                const menuTiles = document.querySelectorAll('.menu-tile');
+
+                menuTiles.forEach(tile => {
+
+                    tile.addEventListener('click', e => {
+
+                        const description = e.target.parentNode.getAttribute('data-description');
+
+                        document.querySelector('.modal').style.display = 'flex';
+                        document.querySelector('.modal__body-text').innerHTML = description;
+
+                    });
+
+                });
+
+                document.querySelector('.modal__close-btn').addEventListener('click', () => {
+                    document.querySelector('.modal').style.display = 'none';
+                });
+
+            </script>
+    </body>
+</html>
